@@ -59,7 +59,9 @@
 		num_ctx: null,
 		num_batch: null,
 		num_keep: null,
-		max_tokens: null
+		max_tokens: null,
+		cache_type_k: '',
+		cache_type_v: ''
 	};
 
 	const toggleRequestFormat = async () => {
@@ -321,7 +323,9 @@
 						max_tokens: params.max_tokens !== null ? params.max_tokens : undefined,
 						use_mmap: params.use_mmap !== null ? params.use_mmap : undefined,
 						use_mlock: params.use_mlock !== null ? params.use_mlock : undefined,
-						num_thread: params.num_thread !== null ? params.num_thread : undefined
+						num_thread: params.num_thread !== null ? params.num_thread : undefined,
+						cache_type_k: params.cache_type_k !== '' ? params.cache_type_k : undefined,
+						cache_type_v: params.cache_type_v !== '' ? params.cache_type_v : undefined
 					},
 					keepAlive: keepAlive ? (isNaN(keepAlive) ? keepAlive : parseInt(keepAlive)) : undefined
 				});

@@ -29,7 +29,9 @@
 		use_mmap: null,
 		use_mlock: null,
 		num_thread: null,
-		template: null
+		template: null,
+		cache_type_k: '',
+		cache_type_v: ''
 	};
 
 	let customFieldName = '';
@@ -749,6 +751,92 @@
 						step="1"
 					/>
 				</div>
+			</div>
+		{/if}
+	</div>
+
+	<div class=" py-0.5 w-full justify-between">
+		<div class="flex w-full justify-between">
+			<div class=" self-center text-xs font-medium">{'cache_type_k'}</div>
+
+			<button
+				class="p-1 px-3 text-xs flex rounded transition flex-shrink-0 outline-none"
+				type="button"
+				on:click={() => {
+					params.cache_type_k = (params?.cache_type_k ?? '') === '' ? 'fp16' : '';
+				}}
+			>
+				{#if (params?.cache_type_k ?? '') === ''}
+					<span class="ml-2 self-center">{$i18n.t('Default')}</span>
+				{:else}
+					<span class="ml-2 self-center">{$i18n.t('Custom')}</span>
+				{/if}
+			</button>
+		</div>
+
+		{#if (params?.cache_type_k ?? null) !== null}
+			<div class="flex mt-0.5 space-x-2">
+				<button
+					on:click={() => (params.cache_type_k = 'fp16')}
+					class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
+				>
+					fp16
+				</button>
+				<button
+					on:click={() => (params.cache_type_k = 'q4_o')}
+					class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
+				>
+					q4_o
+				</button>
+				<button
+					on:click={() => (params.cache_type_k = 'q8_0')}
+					class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
+				>
+					q8_0
+				</button>
+			</div>
+		{/if}
+	</div>
+
+	<div class=" py-0.5 w-full justify-between">
+		<div class="flex w-full justify-between">
+			<div class=" self-center text-xs font-medium">{'cache_type_v'}</div>
+
+			<button
+				class="p-1 px-3 text-xs flex rounded transition flex-shrink-0 outline-none"
+				type="button"
+				on:click={() => {
+					params.cache_type_v = (params?.cache_type_v ?? '') === '' ? 'fp16' : '';
+				}}
+			>
+				{#if (params?.cache_type_v ?? '') === ''}
+					<span class="ml-2 self-center">{$i18n.t('Default')}</span>
+				{:else}
+					<span class="ml-2 self-center">{$i18n.t('Custom')}</span>
+				{/if}
+			</button>
+		</div>
+
+		{#if (params?.cache_type_v ?? null) !== null}
+			<div class="flex mt-0.5 space-x-2">
+				<button
+					on:click={() => (params.cache_type_v = 'fp16')}
+					class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
+				>
+					fp16
+				</button>
+				<button
+					on:click={() => (params.cache_type_v = 'q4_o')}
+					class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
+				>
+					q4_o
+				</button>
+				<button
+					on:click={() => (params.cache_type_v = 'q8_0')}
+					class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
+				>
+					q8_0
+				</button>
 			</div>
 		{/if}
 	</div>

@@ -101,6 +101,8 @@ type Settings = {
 	num_batch?: string;
 	num_keep?: string;
 	options?: ModelOptions;
+	cache_type_k?: string;
+	cache_type_v?: string;
 };
 
 type ModelOptions = {
